@@ -4,14 +4,12 @@ var apiUrl = 'https://tenjvxuzssuicdopqfau.supabase.co/rest/v1/SchoolApp'
 
 let DataObjet = []
 
-
-
 for (let key in DataObjet) {
     CreatCartApprenant(DataObjet[key]);
 }
+let parent = document.querySelector('.ListApp')
 
 function CreatCartApprenant(Donnees) {
-    let parent = document.querySelector('.ListApp')
     parent.insertAdjacentHTML('afterbegin', `
         <div class="row cartApp">
         <div class="col-2">
@@ -48,7 +46,6 @@ btnAdd.addEventListener('click', () => {
     if (InputFirstName.value.length == 0 || InputLastName.value.length == 0) {
         alert('Vellez remplir les champs du formulaire')
     } else {
-        alert(LevelSelected)
         localStorage.setItem('prenom', InputFirstName.value)
         localStorage.setItem('nom', InputLastName.value)
         localStorage.setItem('niveau', LevelSelected)
@@ -61,7 +58,10 @@ btnAdd.addEventListener('click', () => {
             'bio': localStorage.getItem('bio')
         }
         CreatCartApprenant(NewApp)
+
         DataObjet.push(NewApp)
+            // parent.textContent = ' '
+        console.log('ok');
     }
 })
 
@@ -93,7 +93,7 @@ function AddTaskIntoSupabase(NewObjet) {
 
 function DeleteTaskIntoSupabase(id) {
 
-    fetch(`https://tenjvxuzssuicdopqfau.supabase.co/rest/v1/Todo?id=eq.${id}`, {
+    fetch(`https://tenjvxuzssuicdopqfau.supabase.co/rest/v1/SchoolApp?id=eq.${id}`, {
         method: "DELETE",
         headers: {
             apikey: apiKey,
