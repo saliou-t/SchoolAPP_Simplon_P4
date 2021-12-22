@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+:root {
+    --light: #fff;
+    --principal: rgba(13, 110, 253, 0.8);
+}
+
+body {
+    padding: 0px;
+    margin: 0px;
+    font-family: Roboto;
+}
+
+.ListCartBody {
+    background-color: var(--principal);
+    border-radius: 10px;
+}
+
+.cartApp {
+    background-color: var(--light);
+    padding: 5px 10px;
+    margin: 10px 10px;
+    border-radius: 6px;
+    height: 100px;
+}
+
+.ListApp::-webkit-scrollbar {
+    color: red;
+    width: 10px;
+    background-color: darkgrey;
+    scrollbar-color: #6969dd #e0e0e0;
+}
+
+.ListApp::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 6px white;
+    border-radius: 100px;
+}
+
+.cartApp img {
+    margin-top: 5px;
+}
+
+.cartApp input,
+.cartApp textarea {
+    background-color: var(--light);
+    outline: none;
+    border: none;
+    margin: 5px 30px;
+}
+
+.cartApp input {
+    height: 17px;
+    font-size: 20px;
+}
+
+.cartApp textarea {
+    background-color: var(--light);
+    height: 20;
+    width: 320px;
+}
+
+img {
+    border-radius: 50% 50%;
+}

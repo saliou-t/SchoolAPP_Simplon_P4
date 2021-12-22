@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="../Assets/CSS/style.css">
+
+    <title>SchoolAPP :)</title>
+</head>
+
+<body>
+    <main>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col col-12 col-md-6">
+                    <form class="formulaire" action="">
+                        <div class="row">
+                            <div class="col">
+                                <label for="prenom" class="form-label mt-4">Prénom *</label>
+                                <input type="text" class="form-control" id="prenom" placeholder="Prénom">
+                            </div>
+                            <div class="col">
+                                <label for="nom" class="form-label mt-4">Nom *</label>
+                                <input type="text" class="form-control" id="nom" placeholder="Nom">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="priorite">Niveau *</label>
+                            <select name="niveau" id="niveau" class="form-control niveau">
+                                <option value="Débutant">Débutant</option>
+                                <option value="Intermédiare">Intermédiare</option>
+                                <option value="Avancé">Avancé</option>
+                                <option value="Expert">Expert</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="text" class="form-label mt-4">Biographie</label>
+                            <textarea class="form-control" id="bio" name="text" rows="3" style="resize:none" placeholder="Facultatif *"></textarea> <br>
+                            <span class="" style="float: right;"> Nombre de caratère(s) : <strong id="longeurText">0</strong> /100</span>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="w-100 btn btn-primary my-5" id="Ajouter">Ajouter</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- <h2 class="text-center text-light my-2">Apprenants</h2> -->
+                <div class="col col-12 col-md-6 ListCartBody">
+                    <div class="ListApp" style="overflow-y:scroll; height:400px;">
+
+                    </div>
+                    <div class="row my-2">
+                        <div class="col text-end">
+                            <div class="btn btn-light" id="sauvegarder">
+                                Sauvegarder
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="../Assets/JS/script.js"></script>
+</body>
+
+</html>
