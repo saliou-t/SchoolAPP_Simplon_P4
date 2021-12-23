@@ -2,16 +2,71 @@ var apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6M
 var apiUrl = 'https://tenjvxuzssuicdopqfau.supabase.co/rest/v1/SchoolApp'
 
 
+
+window.addEventListener('load', () => {
+    let List = JSON.parse(localStorage.getItem('List'))
+    console.log(List);
+    for (let item in List) {
+        CreatCartApprenant(List[item])
+    }
+})
+
+let parent = document.querySelector('.ListApp')
+
+let InputFirstName = document.getElementById('prenom')
+let InputLastName = document.getElementById('nom')
+var InputSelectLevel = document.getElementById('niveau');
+let InputSelectIndex = InputSelectLevel.options[InputSelectLevel.selectedIndex].value
+let InputBiographie = document.getElementById('bio')
+
+
+InputBiographie.addEventListener('input', (e) => {
+    document.querySelector('#longeurText').innerHTML = InputBiographie.value.length
+    InputBiographie.maxLength = 100;
+    if (InputBiographie.value.length === 100) {
+        InputBiographie.style.backgroundColor = 'rgba(255,0,0,0.4)'
+        InputBiographie.classList.add('animate__shakeY')
+    } else {
+        InputBiographie.style.backgroundColor = 'white'
+    }
+})
+
+let btnAdd = document.getElementById('Ajouter')
+
 let DataObjet = []
 
-for (let key in DataObjet) {
-    CreatCartApprenant(DataObjet[key]);
-}
-let parent = document.querySelector('.ListApp')
+btnAdd.addEventListener('click', () => {
+    if (InputFirstName.value.length == 0) {
+        FiledBlanc(InputFirstName)
+    } else if (InputLastName.value.length == 0) {
+        FiledBlanc(InputLastName)
+
+    } else if (InputBiographie.value.length == 0) {
+        FiledBlanc(InputBiographie)
+
+    } else {
+        let NewApp = {
+            'prenom': InputFirstName.value,
+            'nom': InputLastName.value,
+            'niveau': InputSelectIndex,
+            'bio': InputBiographie.value
+        }
+
+        // alert('Avant :' + DataObjet.length)
+        DataObjet.push(NewApp)
+
+        localStorage.setItem('List', JSON.stringify(DataObjet));
+        console.log(localStorage.getItem('List') + ' et ' + JSON.stringify(DataObjet));
+
+        CreatCartApprenant(NewApp)
+        document.querySelector('.formulaire').reset()
+    }
+})
+
 
 function CreatCartApprenant(Donnees) {
     parent.insertAdjacentHTML('afterbegin', `
-        <div class="row cartApp">
+        <div class="row cartApp carte-${Donnees.prenom}" >
         <div class="col-2">
             <img src="http://placehold.it/70x70" alt="">
         </div>
@@ -29,48 +84,38 @@ function CreatCartApprenant(Donnees) {
                     Niveau ${Donnees.niveau}
                 </div>
             </div>
-        </div>
+            </div>
+            <span class="text-center btn-delete" onclick="removeElement('.carte-${Donnees.prenom}')">Retirer</span>
+        <divc class="col">
+        </divc>
     </div>`)
 }
 
-let InputFirstName = document.getElementById('prenom')
-let InputLastName = document.getElementById('nom')
-let Level = document.getElementById('niveau')
-let LevelSelected = Level.options[Level.selectedIndex].text
-let InputBiographie = document.getElementById('bio')
+function removeElement(Element) {
+    console.log(Element);
+    document.querySelector(Element).remove()
+
+    //suppréssion dans le tableau et dans recnversion
 
 
-let btnAdd = document.getElementById('Ajouter')
+}
 
-btnAdd.addEventListener('click', () => {
-    if (InputFirstName.value.length == 0 || InputLastName.value.length == 0) {
-        alert('Vellez remplir les champs du formulaire')
-    } else {
-        localStorage.setItem('prenom', InputFirstName.value)
-        localStorage.setItem('nom', InputLastName.value)
-        localStorage.setItem('niveau', LevelSelected)
-        localStorage.setItem('bio', InputBiographie.value)
-
-        let NewApp = {
-            'prenom': localStorage.getItem('prenom'),
-            'nom': localStorage.getItem('nom'),
-            'niveau': localStorage.getItem('niveau'),
-            'bio': localStorage.getItem('bio')
-        }
-        CreatCartApprenant(NewApp)
-
-        DataObjet.push(NewApp)
-            // parent.textContent = ' '
-        console.log('ok');
-    }
-})
+function FiledBlanc(element) {
+    element.style.border = '1px solid red'
+    element.classList.add('animate__flipInX')
+    element.focus()
+}
 
 let BtnSaveAll = document.getElementById('sauvegarder');
 BtnSaveAll.addEventListener('click', () => {
+    document.querySelector('.ListApp').innerHTML = ''
+
     for (let item in DataObjet) {
         AddTaskIntoSupabase(DataObjet[item])
     }
     console.log('ok');
+
+    localStorage.clear()
 })
 
 //AJOUTER LES DONNéES DANS LA BASE DE DONN2ES

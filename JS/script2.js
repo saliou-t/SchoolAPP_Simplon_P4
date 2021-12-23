@@ -37,8 +37,8 @@ function CreatCartApprenant(Donnees) {
                     <p class="truncate"> ${Donnees.bio}</p>
                 </div>
             </div>
-            <div class="col text-end mt-n4">
-                Niveau ${Donnees.niveau}
+            <div class="col  ">
+                Niveau <br> ${Donnees.niveau}
             </div>
     </div>`)
 

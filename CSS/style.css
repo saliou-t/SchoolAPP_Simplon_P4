@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
 :root {
     --light: #fff;
+    --red: red;
     --principal: black;
 }
 
@@ -28,6 +29,10 @@ body {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.require {
+    color: red;
 }
 
 .ListApp::-webkit-scrollbar {
@@ -71,4 +76,23 @@ img {
 
 .app:hover {
     cursor: pointer;
+}
+
+.btn-delete {
+    position: relative;
+    left: 40%;
+    width: auto;
+    top: -30px;
+    cursor: pointer;
+    color: var(--red);
+    font-weight: bold;
+}
+
+#sauvegarder:hover {
+    background-color: black;
+    color: white;
+}
+
+#Ajouter {
+    background-color: black;
 }
