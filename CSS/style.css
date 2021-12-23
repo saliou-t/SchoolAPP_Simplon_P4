@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
 :root {
     --light: #fff;
-    --principal: rgba(13, 110, 253, 0.8);
+    --principal: black;
 }
 
 body {
@@ -16,11 +16,18 @@ body {
 }
 
 .cartApp {
-    background-color: var(--light);
+    background-color: white;
     padding: 5px 10px;
     margin: 10px 10px;
     border-radius: 6px;
     height: 100px;
+}
+
+.truncate {
+    width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .ListApp::-webkit-scrollbar {
@@ -60,4 +67,8 @@ body {
 
 img {
     border-radius: 50% 50%;
+}
+
+.app:hover {
+    cursor: pointer;
 }

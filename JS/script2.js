@@ -22,26 +22,35 @@ function getDataIntoSupabase() {
 }
 
 function CreatCartApprenant(Donnees) {
+    let idCard = 'cart-' + Donnees.id
     let parent = document.querySelector('.ListApp')
     parent.insertAdjacentHTML('afterbegin', `
-        <div class="row cartApp">
-        <div class="col-2">
-            <img src="http://placehold.it/70x70" alt="">
-        </div>
-        <div class="col-8">
-            <div>
-                <h6>${Donnees.prenom} ${Donnees.nom}</h6>
+        <div class="row cartApp app">
+            <div class="col-2">
+                <img src="http://placehold.it/70x70" alt="">
             </div>
-            <div>
-                <p>${Donnees.bio}</p>
-            </div>
-        </div>
-        <div class="col">
-            <div class="row">
-                <div class="col">
-                    Niveau ${Donnees.niveau}
+            <div class="col-8">
+                <div>
+                    <h6>${Donnees.prenom} ${Donnees.nom}</h6>
+                </div>
+                <div>
+                    <p class="truncate"> ${Donnees.bio}</p>
                 </div>
             </div>
-        </div>
+            <div class="col text-end mt-n4">
+                Niveau ${Donnees.niveau}
+            </div>
     </div>`)
+
+    let card = document.querySelector('.app')
+    card.addEventListener('click', () => {
+        document.getElementById('nom-prenom').textContent = Donnees.prenom + ' ' + Donnees.nom
+        document.getElementById('bio').textContent = Donnees.bio
+        document.getElementById('niveau').textContent = Donnees.niveau
+        document.getElementById('')
+    })
+}
+
+function getSpecifiqueElemnt() {
+
 }

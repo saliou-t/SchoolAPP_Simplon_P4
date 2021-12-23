@@ -27,19 +27,20 @@
                 <div class="col-1"></div>
                 <div class="col col-12 col-md-6 ">
                     <div class="row">
-                        <div class="col-2">
-                            <img src="http://placehold.it/70x70" alt="">
+                        <div class="col-4">
+                            <img src="http://placehold.it/200x200" alt="" style="border-radius: 3px; width: 170px;">
                         </div>
-                        <div class="col-8">
+                        <div class="col-8 mt-3">
                             <div>
-                                <h6>${Donnees.pernom} ${Donnees.nom}</h6>
+                                <h4 id="nom-prenom"></h4>
                             </div>
                             <div>
-                                <p>${Donnees.niveau}</p>
+                                <h6> Niveau : <strong id="niveau"></strong></h6>
+                                <div class="col my-2">
+                                    <strong>Biographie :</strong>
+                                    <span id="bio"></span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col text-end">
-                            ${Donnees.niveau}
                         </div>
                     </div>
                 </div>
