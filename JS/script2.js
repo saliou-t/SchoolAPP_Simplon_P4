@@ -44,8 +44,6 @@ function CreatCartApprenant(Donnees) {
 
     let card = document.querySelector('.app')
     card.addEventListener('click', () => {
-        //on nettoie le localStorage
-
         localStorage.clear();
 
         let Apprenant = {
@@ -63,10 +61,6 @@ function CreatCartApprenant(Donnees) {
             'compt4_value': Donnees.compt4_value
         }
         localStorage.setItem('App', JSON.stringify(Apprenant))
-        location.href = "showApp.html?id=" + Donnees.id
+        window.open('showApp.html', '_blank');
     })
-}
-
-function getSpecifiqueElemnt() {
-
 }
