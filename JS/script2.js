@@ -63,7 +63,7 @@ function CreatCartApprenant(Donnees) {
             'compt4_value': Donnees.compt4_value
         }
         localStorage.setItem('App', JSON.stringify(Apprenant))
-        location.href = "showApp.html"
+        location.href = "showApp.html?id=" + Donnees.id
     })
 }
 

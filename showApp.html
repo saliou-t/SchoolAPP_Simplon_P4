@@ -24,8 +24,8 @@
     </main>
     <script>
         window.addEventListener('load', () => {
-            let app = JSON.parse(localStorage.getItem('App'))
 
+            let app = JSON.parse(localStorage.getItem('App'))
 
             let carte = document.getElementById('carte')
             carte.insertAdjacentHTML('afterbegin', `
@@ -56,7 +56,7 @@
                             </div>
                             <div class="col-7 mt-2">
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: ${app.compt1_value}%;" aria-valuenow="${app.compt1_value}    " aria-valuemin="0" aria-valuemax="100">${app.compt1_value}%</div>
+                                    <div class="progress-bar" role="progressbar" style="width: ${app.compt1_value}%;  background-color: black ;padding: 3px 2px ;height: 20px" aria-valuenow="${app.compt1_value}" aria-valuemin="0" aria-valuemax="100">${app.compt1_value}%</div>
                                 </div>
                             </div>
                         </div>
@@ -66,7 +66,7 @@
                             </div>
                             <div class="col-7 mt-2">
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: ${app.compt2_value}%;" aria-valuenow="${app.compt2_value}" aria-valuemin="0" aria-valuemax="100">${app.compt2_value}%</div>
+                                    <div class="progress-bar" role="progressbar" style="width: ${app.compt2_value}%; background-color: black ;padding: 3px 2px ;height: 20px" aria-valuenow="${app.compt2_value}" aria-valuemin="0" aria-valuemax="100">${app.compt2_value}%</div>
                                 </div>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                             </div>
                             <div class="col-7 mt-2">
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: ${app.compt3_value}%;" aria-valuenow="${app.compt3_value}    " aria-valuemin="0" aria-valuemax="100">${app.compt3_value}%</div>
+                                    <div class="progress-bar" role="progressbar" style="width: ${app.compt3_value}%;  background-color: black ;padding: 3px 2px ;height: 20px" aria-valuenow="${app.compt3_value}    " aria-valuemin="0" aria-valuemax="100">${app.compt3_value}%</div>
                                 </div>
                             </div>
                         </div>
@@ -86,7 +86,7 @@
                             </div>
                             <div class="col-7 mt-2">
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: ${app.compt4_value}%;" aria-valuenow="${app.compt4_value}" aria-valuemin="0" aria-valuemax="100">${app.compt4_value}%</div>
+                                    <div class="progress-bar" role="progressbar" style="width: ${app.compt4_value}%;  background-color: black ;padding: 3px 2px ;height: 20px" aria-valuenow="${app.compt4_value}" aria-valuemin="0" aria-valuemax="100">${app.compt4_value}%</div>
                                 </div>
                             </div>
                         </div>

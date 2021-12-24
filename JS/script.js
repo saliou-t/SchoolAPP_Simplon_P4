@@ -4,12 +4,20 @@ var apiUrl = 'https://tenjvxuzssuicdopqfau.supabase.co/rest/v1/SchoolApp'
 let parent = document.querySelector('.ListApp')
 
 window.addEventListener('load', () => {
+    // if (localStorage.getItem('List') == null) {
+    //     let DataObjet = []
+    // } else {
+    //     let DataObjet = localStorage.getItem('List')
+    // }
+
     let List = JSON.parse(localStorage.getItem('List'))
     console.log(List);
     for (let item in List) {
         CreatCartApprenant(List[item])
     }
 })
+
+let DataObjet = []
 
 let InputFirstName = document.getElementById('prenom')
 let InputLastName = document.getElementById('nom')
@@ -31,8 +39,6 @@ InputBiographie.addEventListener('input', (e) => {
 
 let btnAdd = document.getElementById('Ajouter')
 
-let DataObjet = []
-
 btnAdd.addEventListener('click', () => {
     if (InputFirstName.value.length == 0) {
         FiledBlanc(InputFirstName)
@@ -50,7 +56,6 @@ btnAdd.addEventListener('click', () => {
             'bio': InputBiographie.value
         }
 
-        // alert('Avant :' + DataObjet.length)
         DataObjet.push(NewApp)
 
         localStorage.setItem('List', JSON.stringify(DataObjet));
@@ -70,10 +75,10 @@ function CreatCartApprenant(Donnees) {
         </div>
         <div class="col-8">
             <div>
-                <input type="text" id="nameContent" value="${Donnees.prenom} ${Donnees.nom}">
+                <input type="text" id="name-${Donnees.id}" value="${Donnees.prenom} ${Donnees.nom}">
             </div>
             <div>
-                <textarea name="" id="bioContent" style="overflow:hidden; resize:none" cols="40" rows="2">${Donnees.bio}</textarea>
+                <textarea name="" id="bio-${Donnees.id}" style="overflow:hidden; resize:none" cols="40" rows="2">${Donnees.bio}</textarea>
             </div>
         </div>
         <div class="col">
@@ -87,13 +92,28 @@ function CreatCartApprenant(Donnees) {
         <divc class="col">
         </divc>
     </div>`)
+    let EditInputBio = document.getElementById('bio-' + Donnees.id)
+    EditInputBio.addEventListener('blur', () => {
+        Donnees.bio = EditInputBio.value
+
+        DataObjet.push(Donnees)
+        console.log(JSON.stringify(DataObjet));
+        localStorage.setItem('List', JSON.stringify(DataObjet))
+    })
 }
+
 
 function removeElement(Element) {
     console.log(Element);
     document.querySelector(Element).remove()
 
     //suppréssion dans le tableau et reconversion
+    console.log('Avant suppréssion : ' + DataObjet.length);
+    DataObjet.pop()
+        // localStorage.setItem('List', JSON.stringify(DataObjet))
+    console.log('Aprés supp : ' + DataObjet.length);
+
+
 
 }
 
