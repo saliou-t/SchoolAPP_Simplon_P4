@@ -44,10 +44,26 @@ function CreatCartApprenant(Donnees) {
 
     let card = document.querySelector('.app')
     card.addEventListener('click', () => {
-        document.getElementById('nom-prenom').textContent = Donnees.prenom + ' ' + Donnees.nom
-        document.getElementById('bio').textContent = Donnees.bio
-        document.getElementById('niveau').textContent = Donnees.niveau
-        document.getElementById('')
+        //on nettoie le localStorage
+
+        localStorage.clear();
+
+        let Apprenant = {
+            'prenom': Donnees.prenom,
+            'nom': Donnees.nom,
+            'niveau': Donnees.niveau,
+            'bio': Donnees.bio,
+            'compt1': Donnees.compt1,
+            'compt1_value': Donnees.compt1_value,
+            'compt2': Donnees.compt2,
+            'compt2_value': Donnees.compt2_value,
+            'compt3': Donnees.compt3,
+            'compt3_value': Donnees.compt3_value,
+            'compt4': Donnees.compt4,
+            'compt4_value': Donnees.compt4_value
+        }
+        localStorage.setItem('App', JSON.stringify(Apprenant))
+        location.href = "showApp.html"
     })
 }
 

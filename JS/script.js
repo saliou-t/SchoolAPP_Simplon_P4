@@ -1,7 +1,7 @@
 var apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzODg4MTg4OCwiZXhwIjoxOTU0NDU3ODg4fQ.8kYZB_B7tP4HnVseFpg_KLtyI-ucHsksFcWU54PwEW4'
 var apiUrl = 'https://tenjvxuzssuicdopqfau.supabase.co/rest/v1/SchoolApp'
 
-
+let parent = document.querySelector('.ListApp')
 
 window.addEventListener('load', () => {
     let List = JSON.parse(localStorage.getItem('List'))
@@ -10,8 +10,6 @@ window.addEventListener('load', () => {
         CreatCartApprenant(List[item])
     }
 })
-
-let parent = document.querySelector('.ListApp')
 
 let InputFirstName = document.getElementById('prenom')
 let InputLastName = document.getElementById('nom')
