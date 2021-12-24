@@ -93,8 +93,7 @@ function removeElement(Element) {
     console.log(Element);
     document.querySelector(Element).remove()
 
-    //suppréssion dans le tableau et dans recnversion
-
+    //suppréssion dans le tableau et reconversion
 
 }
 
