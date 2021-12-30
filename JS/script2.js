@@ -29,7 +29,7 @@ function CreatCartApprenant(Donnees) {
             <div class="col-2">
                 <img src="http://placehold.it/70x70" alt="">
             </div>
-            <div class="col-8">
+            <div class="col-8"> n,;:!
                 <div>
                     <h6>${Donnees.prenom} ${Donnees.nom}</h6>
                 </div>
