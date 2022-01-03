@@ -25,7 +25,6 @@ var InputSelectLevel = document.getElementById('niveau');
 let InputSelectIndex = InputSelectLevel.options[InputSelectLevel.selectedIndex].value
 let InputBiographie = document.getElementById('bio')
 
-
 InputBiographie.addEventListener('input', (e) => {
     document.querySelector('#longeurText').innerHTML = InputBiographie.value.length
     InputBiographie.maxLength = 100;
@@ -57,7 +56,6 @@ btnAdd.addEventListener('click', () => {
         }
 
         DataObjet.push(NewApp)
-
         localStorage.setItem('List', JSON.stringify(DataObjet));
         console.log(localStorage.getItem('List') + ' et ' + JSON.stringify(DataObjet));
 
@@ -69,13 +67,18 @@ btnAdd.addEventListener('click', () => {
 
 function CreatCartApprenant(Donnees) {
     parent.insertAdjacentHTML('afterbegin', `
-        <div class="row cartApp carte-${Donnees.prenom}" >
+        <div class="row cartApp carte-${Donnees.prenom} " >
         <div class="col-2">
             <img src="http://placehold.it/70x70" alt="">
         </div>
         <div class="col-8">
-            <div>
-                <input type="text" id="name-${Donnees.id}" value="${Donnees.prenom} ${Donnees.nom}">
+            <div class="row">
+                <div class="col-3">
+                    <input type="text" id="first-${Donnees.id}" value="${Donnees.prenom}">
+                </div>
+                <div class="col-6">
+                    <input type="text" id="last-${Donnees.id}" value="${Donnees.nom}">
+                </div>
             </div>
             <div>
                 <textarea name="" id="bio-${Donnees.id}" style="overflow:hidden; resize:none" cols="40" rows="2">${Donnees.bio}</textarea>
@@ -88,31 +91,77 @@ function CreatCartApprenant(Donnees) {
                 </div>
             </div>
             </div>
-            <span class="text-center btn-delete" onclick="removeElement('.carte-${Donnees.prenom}')">Retirer</span>
+            <span class="text-center btn-delete btn-delete-${Donnees.id}" >Retirer</span>
         <divc class="col">
         </divc>
     </div>`)
-    let EditInputBio = document.getElementById('bio-' + Donnees.id)
-    EditInputBio.addEventListener('blur', () => {
-        Donnees.bio = EditInputBio.value
 
-        DataObjet.push(Donnees)
-        console.log(JSON.stringify(DataObjet));
+    let btnRemove = document.querySelector('.btn-delete-' + Donnees.id)
+    let carteToRemove = document.querySelector('.carte-' + Donnees.prenom)
+
+    btnRemove.addEventListener('click', () => {
+        carteToRemove.remove()
+
+        //suppréssion dans le tableau et reconversion
+        console.log('Avant suppréssion : ' + DataObjet.length);
+        DataObjet.shift()
         localStorage.setItem('List', JSON.stringify(DataObjet))
+        console.log('Aprés supp : ' + DataObjet.length);
+
     })
-}
 
+    let EditFirstName = document.getElementById('first-' + Donnees.id)
+    let FirstNameBefore = EditFirstName.value
+    EditFirstName.addEventListener('blur', () => {
+        if (EditFirstName.value == "") {
+            alert('Prénom vide !')
+            EditFirstName.value = FirstNameBefore
+        } else {
+            Donnees.prenom = EditFirstName.value
+            DataObjet.push(Donnees)
+            localStorage.setItem('List', JSON.stringify(DataObjet))
+        }
+    })
 
-function removeElement(Element) {
-    console.log(Element);
-    document.querySelector(Element).remove()
+    let EditInputBio = document.getElementById('bio-' + Donnees.id)
 
-    //suppréssion dans le tableau et reconversion
-    console.log('Avant suppréssion : ' + DataObjet.length);
-    DataObjet.pop()
-        // localStorage.setItem('List', JSON.stringify(DataObjet))
-    console.log('Aprés supp : ' + DataObjet.length);
+    let BioBefore = EditInputBio.value
+    EditInputBio.addEventListener('blur', () => {
+        if (EditInputBio.value == "") {
+            alert('Le champ biographie est vide !')
+            EditInputBio.value = BioBefore
+        } else {
+            Donnees.bio = EditInputBio.value
+            DataObjet.push(Donnees)
+            console.log(JSON.stringify(DataObjet));
+            localStorage.setItem('List', JSON.stringify(DataObjet))
+        }
+    })
 
+    let EditLastName = document.getElementById('last-' + Donnees.id)
+    let LastNameBefore = EditLastName.value
+    EditLastName.addEventListener('blur', () => {
+
+        if (EditLastName.value == "") {
+            alert('Champs nom vide !')
+            EditLastName.value = LastNameBefore
+        } else {
+            Donnees.nom = EditLastName.value
+            DataObjet.push(Donnees)
+            localStorage.setItem('List', JSON.stringify(DataObjet))
+        }
+
+        let BtnSaveAll = document.getElementById('sauvegarder');
+        BtnSaveAll.addEventListener('click', () => {
+            document.querySelector('.ListApp').innerHTML = ''
+
+            for (let item in DataObjet) {
+                AddTaskIntoSupabase(DataObjet[item])
+            }
+            console.log('ok');
+            localStorage.clear()
+        })
+    })
 
 
 }
@@ -123,17 +172,6 @@ function FiledBlanc(element) {
     element.focus()
 }
 
-let BtnSaveAll = document.getElementById('sauvegarder');
-BtnSaveAll.addEventListener('click', () => {
-    document.querySelector('.ListApp').innerHTML = ''
-
-    for (let item in DataObjet) {
-        AddTaskIntoSupabase(DataObjet[item])
-    }
-    console.log('ok');
-
-    localStorage.clear()
-})
 
 //AJOUTER LES DONNéES DANS LA BASE DE DONN2ES
 function AddTaskIntoSupabase(NewObjet) {
@@ -163,3 +201,15 @@ function DeleteTaskIntoSupabase(id) {
         }
     })
 }
+
+
+let BtnSaveAll = document.getElementById('sauvegarder');
+BtnSaveAll.addEventListener('click', () => {
+    document.querySelector('.ListApp').innerHTML = ''
+
+    for (let item in DataObjet) {
+        AddTaskIntoSupabase(DataObjet[item])
+    }
+    console.log('ok');
+    localStorage.clear()
+})
